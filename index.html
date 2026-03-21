@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="es" data-theme="light">
+
+<head>
+	<meta charset="utf-8" />
+	<base href="/mai-tools/" />
+	<link rel="icon" href="./favicon.png" />
+	<link rel="manifest" href="./manifest.json" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+		integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+		crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<link href="./_app/immutable/entry/start.fBBdsoFM.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/CMvkMj5-.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/FroJ69wH.js" rel="modulepreload">
+		<link href="./_app/immutable/entry/app.YdbMwOPX.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/yWC0JPST.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/CMi5uXT9.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/Y5SF5Z6Y.js" rel="modulepreload">
+		<link href="./_app/immutable/nodes/0.wtIzcu4Y.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/JOC7yfPk.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/BMXltltH.js" rel="modulepreload">
+		<link href="./_app/immutable/nodes/2.Bj8OmdWA.js" rel="modulepreload">
+		<!--1m6knwx--><!----><title>Mai Tools</title>
+		<link href="./_app/immutable/assets/0.B2uytuDz.css" rel="stylesheet">
+		<link href="./_app/immutable/assets/2.AbSOWmWh.css" rel="stylesheet">
+</head>
+
+<body data-sveltekit-preload-data="hover">
+	<div style="display: contents"><!--[--><!--[--><!--[--><div class="app svelte-12qhfyh"><nav class="navbar"><a role="button" tabindex="0" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false" href="javascript:;"><span aria-hidden="true"></span> <span aria-hidden="true"></span> <span aria-hidden="true"></span> <span aria-hidden="true"></span></a> <div class="navbar-menu" id="navMenu"><div class="navbar-start"><a class="navbar-item is-active" href="?pagina=home" title="Home">Home</a><!----> <div class="navbar-item has-dropdown is-hoverable"><div class="navbar-link">Text</div> <div class="navbar-dropdown"><a class="navbar-item " href="?pagina=text.removeBreakLines" title="Remove Break Lines">Remove Break Lines</a><!----> <a class="navbar-item " href="?pagina=text.removeDuplicates" title="Remove Duplicates">Remove Duplicates</a><!----></div></div></div> <!--[!--><!--]--></div></nav><!----> <main class="svelte-12qhfyh"><!--[--><!--[--><section class="svelte-1uha8ag"><!--[--><!--]--><!----></section><!--]--><!--]--></main></div><!--]--><!--]--> <!--[!--><!--]--><!--]-->
+			
+			<script>
+				{
+					__sveltekit_19pv5ki = {
+						base: new URL(".", location).pathname.slice(0, -1)
+					};
+
+					const element = document.currentScript.parentElement;
+
+					Promise.all([
+						import("./_app/immutable/entry/start.fBBdsoFM.js"),
+						import("./_app/immutable/entry/app.YdbMwOPX.js")
+					]).then(([kit, app]) => {
+						kit.start(app, element, {
+							node_ids: [0, 2],
+							data: [null,null],
+							form: null,
+							error: null
+						});
+					});
+				}
+			</script>
+		</div>
+
+	<script>
+		if ("serviceWorker" in navigator) {
+			window.addEventListener("load", function () {
+				navigator.serviceWorker
+					.register("worker.js")
+					.then(
+						function (registration) {
+							console.log("Worker registration successful", registration.scope);
+						},
+						function (err) {
+							console.log("Worker registration failed", err);
+						}
+					)
+					.catch(function (err) {
+						console.log(err);
+					});
+			});
+		} else {
+			console.log("Service Worker is not supported by browser.");
+		}
+	</script>
+</body>
+
+</html>
