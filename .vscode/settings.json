@@ -1,5 +1,5 @@
 {
-    "editor.formatOnSave": true,
+    "editor.formatOnSave": false,
     "editor.formatOnSaveMode": "file",
     "typescript.format.semicolons": "insert",
     "editor.defaultFormatter": "svelte.svelte-vscode",

@@ -12,7 +12,9 @@
 		"moduleResolution": "bundler",
 		"types": [
 			"bun-types"
-		]
+		],
+		"allowImportingTsExtensions": true,
+		"noEmit": true
 	}
 	// Path aliases are handled by https://svelte.dev/docs/kit/configuration#alias
 	// except $lib which is handled by https://svelte.dev/docs/kit/configuration#files

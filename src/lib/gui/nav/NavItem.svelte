@@ -1,6 +1,6 @@
 <script lang="ts">
     import type { Page } from "$lib/page";
-    import { appState } from "$lib/state.svelte";
+    import { appState } from "$lib/state.svelte.ts";
 
     type Props = {
         text: string;
@@ -10,7 +10,7 @@
     let { text, page }: Props = $props();
 
     function generateLink(page: Page): string {
-        return `?pagina=${page}`;
+        return `?page=${page}`;
     }
 </script>
 
