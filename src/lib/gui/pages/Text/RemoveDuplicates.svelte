@@ -1,4 +1,6 @@
 <script lang="ts">
+    import ButtonCopyResult from "$lib/gui/ButtonCopyResult.svelte";
+    import ToolLayout from "$lib/gui/ToolLayout.svelte";
     import text from "$lib/text";
 
     let input = $state<string>("1, 2, 3, 2");
@@ -20,30 +22,23 @@
 
         return uniqueParts.join(", ");
     }
+
+    const fieldClass =
+        "w-full resize-y rounded-xl border border-slate-200 bg-white p-3 font-mono text-sm text-slate-800 placeholder:text-slate-400 focus:border-brand-500 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-200";
+    const labelClass = "mb-1.5 block text-sm font-medium text-slate-700 dark:text-slate-300";
 </script>
 
-<section>
-    <h1>{text.removeDuplicates}</h1>
-
-    <div class="field">
-        <label class="label" for="">List</label>
-
-        <div class="control">
-            <textarea bind:value={input} class="textarea" placeholder="1, 2, 3"></textarea>
-        </div>
+<ToolLayout title={text.removeDuplicates} description="Strip duplicate entries from a comma-separated list.">
+    <div>
+        <label class={labelClass} for="input">List</label>
+        <textarea id="input" bind:value={input} rows="6" class={fieldClass} placeholder="1, 2, 3"></textarea>
     </div>
 
-    <div class="field">
-        <label class="label" for="">Output</label>
-
-        <div class="control">
-            <textarea bind:value={output} class="textarea" placeholder="Output"></textarea>
+    <div>
+        <div class="mb-1.5 flex items-center justify-between">
+            <label class={labelClass + " mb-0"} for="output">Output</label>
+            <ButtonCopyResult rawResultLines={output} />
         </div>
+        <textarea id="output" value={output} readonly rows="6" class={fieldClass} placeholder="Output"></textarea>
     </div>
-</section>
-
-<style>
-    section {
-        width: 100%;
-    }
-</style>
+</ToolLayout>

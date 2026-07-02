@@ -1,197 +1,183 @@
 <script lang="ts">
-    const tools = [
-        "Browser Local AI Chat",
-        "English Dictionary",
-        "Asu: Tools for subtitle automation",
-        "QR Detector",
-        "HUI: Reactive HTML UI framework",
-        "Gocker: Docker commands",
-        "Asu: Regex Parser",
-        "Remove Break Lines",
-        "Remove Duplicates",
-        "Excel ↔ JSON",
-        "JSON → OpenAPI",
-        "SQL Playground",
-        "Snake",
-        "Palindrome Detector",
-        "Random Facts"
-    ];
+    import {
+        ArrowLeftRight,
+        ArrowUpRight,
+        Code,
+        Database,
+        Gamepad2,
+        Image,
+        Languages,
+        Search,
+        Sparkles,
+        Type,
+        type LucideIcon,
+    } from "@lucide/svelte";
+    import { appState } from "$lib/state.svelte.ts";
+    import { Page } from "$lib/page";
+    import { categories, tools, type Category, type Tool } from "$lib/tools";
 
-    const row1 = [...tools];
-    const row2 = [...tools].reverse();
-    const row3 = [...tools].sort(() => Math.random() - 0.5);
+    const categoryIcons: Record<Category, LucideIcon> = {
+        AI: Sparkles,
+        Coding: Code,
+        Converters: ArrowLeftRight,
+        Images: Image,
+        "Plain text": Type,
+        SQL: Database,
+        Translation: Languages,
+        "Video games": Gamepad2,
+    };
+
+    let activeCategory = $state<Category | "All">("All");
+    let query = $state("");
+
+    const filtered = $derived.by<Tool[]>(() => {
+        const q = query.trim().toLowerCase();
+        return tools.filter((tool) => {
+            const matchesCategory = activeCategory === "All" || tool.category === activeCategory;
+            const matchesQuery =
+                q === "" ||
+                tool.name.toLowerCase().includes(q) ||
+                tool.description.toLowerCase().includes(q) ||
+                tool.category.toLowerCase().includes(q);
+            return matchesCategory && matchesQuery;
+        });
+    });
+
+    function openInternal(tool: Tool): void {
+        const parsed = Page.safeParse(tool.id);
+        if (parsed.success) {
+            appState.activePage = parsed.data;
+        }
+    }
 </script>
 
 <svelte:head>
     <title>Mai Tools</title>
 </svelte:head>
 
-<main class="home-container">
-    <div class="hero">
-        <h1 class="main-title">MAI TOOLS</h1>
-        <p class="subtitle">A curated collection of minimalist web utilities by <a href="https://github.com/FS-Frost" target="_blank">Eduardo Hinojosa (Frost)</a>.</p>
+<div class="relative mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
+    <!-- Decorative animated aurora behind the hero -->
+    <div class="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[520px] overflow-hidden" aria-hidden="true">
+        <div
+            class="animate-blob absolute left-1/2 top-[-6rem] h-72 w-72 -translate-x-[70%] rounded-full bg-brand-400/30 blur-3xl dark:bg-brand-700/30"
+        ></div>
+        <div
+            class="animate-blob absolute left-1/2 top-[-3rem] h-80 w-80 -translate-x-[10%] rounded-full bg-sky-400/25 blur-3xl [animation-delay:-7s] dark:bg-sky-700/25"
+        ></div>
+        <div
+            class="animate-blob absolute left-1/2 top-[2rem] h-64 w-64 -translate-x-[120%] rounded-full bg-blue-400/20 blur-3xl [animation-delay:-13s] dark:bg-blue-800/25"
+        ></div>
     </div>
 
-    <div class="marquee-container">
-        <!-- Row 1: Right to Left -->
-        <div class="marquee">
-            <div class="marquee-inner left">
-                {#each row1 as tool}
-                    <span class="tool-tag">{tool}</span>
-                {/each}
-                {#each row1 as tool}
-                    <span class="tool-tag">{tool}</span>
-                {/each}
-            </div>
+    <!-- Hero -->
+    <section class="mx-auto max-w-2xl text-center">
+        <h1
+            class="bg-gradient-to-b from-slate-900 to-slate-500 bg-clip-text text-4xl font-black tracking-tight text-transparent dark:from-white dark:to-slate-500 sm:text-6xl"
+        >
+            MAI TOOLS
+        </h1>
+        <p class="mt-4 text-base text-slate-600 dark:text-slate-400 sm:text-lg">
+            A curated collection of minimalist web utilities by
+            <a
+                href="https://github.com/FS-Frost"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="font-medium text-brand-600 underline-offset-4 hover:underline dark:text-brand-400"
+            >
+                Eduardo Hinojosa (Frost)
+            </a>.
+        </p>
+    </section>
+
+    <!-- Controls -->
+    <div class="mt-12 flex flex-col gap-4">
+        <div class="relative mx-auto w-full max-w-md">
+            <Search
+                class="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400"
+            />
+            <input
+                type="search"
+                bind:value={query}
+                placeholder="Search tools..."
+                class="w-full rounded-xl border border-slate-200 bg-white py-2.5 pl-10 pr-4 text-sm text-slate-800 placeholder:text-slate-400 focus:border-brand-500 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-200"
+            />
         </div>
 
-        <!-- Row 2: Left to Right -->
-        <div class="marquee alternate">
-            <div class="marquee-inner right">
-                {#each row2 as tool}
-                    <span class="tool-tag">{tool}</span>
-                {/each}
-                {#each row2 as tool}
-                    <span class="tool-tag">{tool}</span>
-                {/each}
-            </div>
-        </div>
-
-        <!-- Row 3: Right to Left (Faster) -->
-        <div class="marquee fast">
-            <div class="marquee-inner left">
-                {#each row3 as tool}
-                    <span class="tool-tag">{tool}</span>
-                {/each}
-                {#each row3 as tool}
-                    <span class="tool-tag">{tool}</span>
-                {/each}
-            </div>
+        <div class="flex flex-wrap justify-center gap-2">
+            <button
+                type="button"
+                onclick={() => (activeCategory = "All")}
+                class={[
+                    "rounded-full px-3.5 py-1.5 text-sm font-medium transition-colors",
+                    activeCategory === "All"
+                        ? "bg-brand-600 text-white"
+                        : "bg-slate-100 text-slate-600 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700",
+                ]}
+            >
+                All
+            </button>
+            {#each categories as category}
+                <button
+                    type="button"
+                    onclick={() => (activeCategory = category)}
+                    class={[
+                        "rounded-full px-3.5 py-1.5 text-sm font-medium transition-colors",
+                        activeCategory === category
+                            ? "bg-brand-600 text-white"
+                            : "bg-slate-100 text-slate-600 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700",
+                    ]}
+                >
+                    {category}
+                </button>
+            {/each}
         </div>
     </div>
-</main>
 
-<style>
-    .home-container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        height: 100vh;
-        width: 100vw;
-        overflow: hidden;
-        background: #000;
-        color: #fff;
-        font-family:
-            "Inter",
-            -apple-system,
-            BlinkMacSystemFont,
-            "Segoe UI",
-            Roboto,
-            sans-serif;
-    }
+    <!-- Gallery -->
+    {#if filtered.length === 0}
+        <p class="mt-16 text-center text-sm text-slate-500 dark:text-slate-400">
+            No tools match your search.
+        </p>
+    {:else}
+        <div class="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {#each filtered as tool (tool.id)}
+                {@const CategoryIcon = categoryIcons[tool.category]}
+                <a
+                    href={tool.href}
+                    target={tool.external ? "_blank" : undefined}
+                    rel={tool.external ? "noopener noreferrer" : undefined}
+                    onclick={tool.external ? undefined : () => openInternal(tool)}
+                    class="group relative flex flex-col gap-3 rounded-2xl border border-slate-200 bg-white p-5 transition-all hover:-translate-y-0.5 hover:border-brand-300 hover:shadow-lg hover:shadow-brand-500/5 dark:border-slate-800 dark:bg-slate-900 dark:hover:border-brand-700"
+                >
+                    <div class="flex items-center justify-between">
+                        <span
+                            class="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-50 text-brand-600 dark:bg-brand-500/10 dark:text-brand-400"
+                        >
+                            <CategoryIcon class="h-5 w-5" />
+                        </span>
+                        {#if tool.external}
+                            <ArrowUpRight
+                                class="h-4 w-4 text-slate-300 transition-colors group-hover:text-brand-500 dark:text-slate-600"
+                            />
+                        {/if}
+                    </div>
 
-    .hero {
-        text-align: center;
-        margin-bottom: 2rem;
-        z-index: 10;
-    }
+                    <div>
+                        <h3 class="font-semibold text-slate-900 dark:text-white">
+                            {tool.name}
+                        </h3>
+                        <p class="mt-1 text-sm leading-relaxed text-slate-500 dark:text-slate-400">
+                            {tool.description}
+                        </p>
+                    </div>
 
-    .main-title {
-        font-size: 5rem;
-        font-weight: 900;
-        letter-spacing: -3px;
-        background: linear-gradient(180deg, #fff 0%, #777 100%);
-        -webkit-background-clip: text;
-        background-clip: text;
-        -webkit-text-fill-color: transparent;
-        margin: 0;
-        filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.2));
-    }
-
-    .subtitle {
-        color: #888;
-        font-size: 1.2rem;
-        margin-top: 0.5rem;
-    }
-
-    .subtitle a {
-        color: #fff;
-        text-decoration: underline;
-        text-decoration-color: rgba(255, 255, 255, 0.3);
-        transition: text-decoration-color 0.3s ease;
-    }
-
-    .subtitle a:hover {
-        text-decoration-color: rgba(255, 255, 255, 0.8);
-    }
-
-    .marquee-container {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        gap: 2rem;
-        opacity: 0.4;
-        filter: blur(1px);
-        transform: rotate(-12deg) scale(1.4);
-        pointer-events: none;
-    }
-
-    .marquee {
-        width: 100%;
-        overflow: hidden;
-        white-space: nowrap;
-    }
-
-    .marquee-inner {
-        display: inline-flex;
-        gap: 3rem;
-        padding-right: 3rem;
-    }
-
-    .left {
-        animation: scrollLeft 60s linear infinite;
-    }
-
-    .right {
-        animation: scrollRight 70s linear infinite;
-    }
-
-    .fast .left {
-        animation-duration: 45s;
-    }
-
-    .tool-tag {
-        font-size: 1.5rem;
-        font-weight: 600;
-        padding: 0.8rem 1.5rem;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 50px;
-        background: rgba(255, 255, 255, 0.03);
-        backdrop-filter: blur(5px);
-        transition: transform 0.3s ease;
-    }
-
-    @keyframes scrollLeft {
-        from {
-            transform: translateX(0);
-        }
-        to {
-            transform: translateX(-50%);
-        }
-    }
-
-    @keyframes scrollRight {
-        from {
-            transform: translateX(-50%);
-        }
-        to {
-            transform: translateX(0);
-        }
-    }
-</style>
+                    <span
+                        class="mt-auto text-xs font-medium uppercase tracking-wide text-slate-400 dark:text-slate-500"
+                    >
+                        {tool.category}
+                    </span>
+                </a>
+            {/each}
+        </div>
+    {/if}
+</div>
