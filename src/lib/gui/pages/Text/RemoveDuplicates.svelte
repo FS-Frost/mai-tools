@@ -24,7 +24,7 @@
     }
 
     const fieldClass =
-        "w-full resize-y rounded-xl border border-slate-200 bg-white p-3 font-mono text-sm text-slate-800 placeholder:text-slate-400 focus:border-brand-500 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-200";
+        "w-full resize-y rounded-lg border border-slate-300 bg-white p-3 font-mono text-sm text-slate-800 placeholder:text-slate-400 focus:border-slate-900 focus:ring-1 focus:ring-slate-900 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-200 dark:focus:border-slate-100 dark:focus:ring-slate-100";
     const labelClass = "mb-1.5 block text-sm font-medium text-slate-700 dark:text-slate-300";
 </script>
 

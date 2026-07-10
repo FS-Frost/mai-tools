@@ -55,24 +55,11 @@
     <title>Mai Tools</title>
 </svelte:head>
 
-<div class="relative mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
-    <!-- Decorative animated aurora behind the hero -->
-    <div class="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[520px] overflow-hidden" aria-hidden="true">
-        <div
-            class="animate-blob absolute left-1/2 top-[-6rem] h-72 w-72 -translate-x-[70%] rounded-full bg-brand-400/30 blur-3xl dark:bg-brand-700/30"
-        ></div>
-        <div
-            class="animate-blob absolute left-1/2 top-[-3rem] h-80 w-80 -translate-x-[10%] rounded-full bg-sky-400/25 blur-3xl [animation-delay:-7s] dark:bg-sky-700/25"
-        ></div>
-        <div
-            class="animate-blob absolute left-1/2 top-[2rem] h-64 w-64 -translate-x-[120%] rounded-full bg-blue-400/20 blur-3xl [animation-delay:-13s] dark:bg-blue-800/25"
-        ></div>
-    </div>
-
+<div class="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
     <!-- Hero -->
     <section class="mx-auto max-w-2xl text-center">
         <h1
-            class="bg-gradient-to-b from-slate-900 to-slate-500 bg-clip-text text-4xl font-black tracking-tight text-transparent dark:from-white dark:to-slate-500 sm:text-6xl"
+            class="text-4xl font-black tracking-tight text-slate-900 dark:text-white sm:text-6xl"
         >
             MAI TOOLS
         </h1>
@@ -99,18 +86,18 @@
                 type="search"
                 bind:value={query}
                 placeholder="Search tools..."
-                class="w-full rounded-xl border border-slate-200 bg-white py-2.5 pl-10 pr-4 text-sm text-slate-800 placeholder:text-slate-400 focus:border-brand-500 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-200"
+                class="w-full rounded-lg border border-slate-300 bg-white py-2.5 pl-10 pr-4 text-sm text-slate-800 placeholder:text-slate-400 focus:border-brand-600 focus:ring-1 focus:ring-brand-600 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200 dark:focus:border-brand-500 dark:focus:ring-brand-500"
             />
         </div>
 
-        <div class="flex flex-wrap justify-center gap-2">
+        <div class="flex flex-wrap justify-center gap-1.5">
             <button
                 type="button"
                 onclick={() => (activeCategory = "All")}
                 class={[
-                    "rounded-full px-3.5 py-1.5 text-sm font-medium transition-colors",
+                    "rounded-md px-3.5 py-1.5 text-xs font-semibold uppercase tracking-wider transition-colors",
                     activeCategory === "All"
-                        ? "bg-brand-600 text-white"
+                        ? "bg-slate-900 text-white dark:bg-slate-100 dark:text-slate-900"
                         : "bg-slate-100 text-slate-600 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700",
                 ]}
             >
@@ -121,9 +108,9 @@
                     type="button"
                     onclick={() => (activeCategory = category)}
                     class={[
-                        "rounded-full px-3.5 py-1.5 text-sm font-medium transition-colors",
+                        "rounded-md px-3.5 py-1.5 text-xs font-semibold uppercase tracking-wider transition-colors",
                         activeCategory === category
-                            ? "bg-brand-600 text-white"
+                            ? "bg-slate-900 text-white dark:bg-slate-100 dark:text-slate-900"
                             : "bg-slate-100 text-slate-600 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700",
                     ]}
                 >
@@ -147,23 +134,23 @@
                     target={tool.external ? "_blank" : undefined}
                     rel={tool.external ? "noopener noreferrer" : undefined}
                     onclick={tool.external ? undefined : () => openInternal(tool)}
-                    class="group relative flex flex-col gap-3 rounded-2xl border border-slate-200 bg-white p-5 transition-all hover:-translate-y-0.5 hover:border-brand-300 hover:shadow-lg hover:shadow-brand-500/5 dark:border-slate-800 dark:bg-slate-900 dark:hover:border-brand-700"
+                    class="group relative flex flex-col gap-3 rounded-lg border border-slate-300 bg-white p-5 transition-colors hover:border-slate-400 hover:bg-slate-50/50 dark:border-slate-800 dark:bg-slate-900/30 dark:hover:border-slate-700 dark:hover:bg-slate-900/80"
                 >
                     <div class="flex items-center justify-between">
                         <span
-                            class="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-50 text-brand-600 dark:bg-brand-500/10 dark:text-brand-400"
+                            class="flex h-8 w-8 items-center justify-center rounded bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300"
                         >
-                            <CategoryIcon class="h-5 w-5" />
+                            <CategoryIcon class="h-4 w-4" />
                         </span>
                         {#if tool.external}
                             <ArrowUpRight
-                                class="h-4 w-4 text-slate-300 transition-colors group-hover:text-brand-500 dark:text-slate-600"
+                                class="h-4 w-4 text-slate-400 transition-colors group-hover:text-slate-600 dark:text-slate-500 dark:group-hover:text-slate-300"
                             />
                         {/if}
                     </div>
 
                     <div>
-                        <h3 class="font-semibold text-slate-900 dark:text-white">
+                        <h3 class="font-bold text-slate-900 dark:text-white">
                             {tool.name}
                         </h3>
                         <p class="mt-1 text-sm leading-relaxed text-slate-500 dark:text-slate-400">
@@ -172,7 +159,7 @@
                     </div>
 
                     <span
-                        class="mt-auto text-xs font-medium uppercase tracking-wide text-slate-400 dark:text-slate-500"
+                        class="mt-auto text-xs font-semibold uppercase tracking-wider text-slate-400 dark:text-slate-500"
                     >
                         {tool.category}
                     </span>

@@ -20,7 +20,7 @@
     <a
         href="?page=home"
         onclick={goHome}
-        class="inline-flex items-center gap-1.5 text-sm font-medium text-slate-500 transition-colors hover:text-brand-600 dark:text-slate-400 dark:hover:text-brand-400"
+        class="inline-flex items-center gap-1.5 text-sm font-medium text-slate-500 transition-colors hover:text-slate-900 dark:text-slate-400 dark:hover:text-white"
     >
         <ArrowLeft class="h-4 w-4" />
         Back to tools
