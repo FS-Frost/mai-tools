@@ -5,6 +5,7 @@ export const Category = z.enum([
     "Coding",
     "Converters",
     "Images",
+    "Learning",
     "Plain text",
     "SQL",
     "Translation",
@@ -32,6 +33,14 @@ export const tools: Tool[] = z.array(Tool).parse([
         description: "Chat with AI models running fully in your browser, no server required.",
         category: "AI",
         href: "https://fs-frost.github.io/mai-chat",
+        external: true,
+    },
+    {
+        id: "yomigaeru",
+        name: "Yomigaeru",
+        description: "Learn Japanese offline: spaced-repetition flashcards with multimodal AI (Gemini).",
+        category: "Learning",
+        href: "https://github.com/FS-Frost/yomigaeru",
         external: true,
     },
     {
