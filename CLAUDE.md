@@ -11,7 +11,7 @@ bun check       # svelte-check; must report 0 errors / 0 warnings
 bun run build   # static output in build/ (prerendered)
 ```
 
-Push to `main` deploys via `.github/workflows/main.yml` (rewrites `<base href>` to `/mai-tools/`).
+Push to `main` deploys via `.github/workflows/main.yml` (rewrites `<base href>` to `/mai-tools/`). After deploying, it waits until Pages serves the new `tools.json` and triggers `readme.yml` in `FS-Frost/fs-frost`, so the profile updates within minutes. That step needs the `PROFILE_DISPATCH_TOKEN` secret (fine-grained PAT, only `FS-Frost/fs-frost`, Actions: read and write) and is skipped when the secret is missing.
 
 ## Architecture
 
@@ -23,7 +23,8 @@ Push to `main` deploys via `.github/workflows/main.yml` (rewrites `<base href>` 
 
 ## Rules
 
-- `static/tools.json` is the **single source of truth** shared with the GitHub profile (`FS-Frost/fs-frost`, `scripts/generate-readme.ts`). Keep its shape stable: `id`, `name`, `description`, `category`, `href`, `external`, `stack`. Changing field names breaks the profile generator.
+- `static/tools.json` is the **single source of truth** shared with the GitHub profile (`FS-Frost/fs-frost`, `scripts/generate-readme.ts`). Keep its shape stable: `id`, `name`, `description`, `category`, `href`, `external`, `stack`, plus optional `repo` (GitHub repo name) and `topics`. Changing field names breaks the profile scripts.
+- `repo` + `topics` + the English `description` are pushed to each GitHub repo by `fs-frost/scripts/sync-repos.ts` (run manually). Topics must be lowercase, digits and hyphens, max 50 chars (validated in `tools.ts`).
 - Every user-visible string goes through `t()` or `localize()`; never hardcode English in components. Add keys to both `en` and `es` (the `Text` type enforces it).
 - Locale always starts as `"en"` and the saved choice is applied in `onMount` (`+layout.svelte`). Do not read `localStorage` during init: the HTML is prerendered and hydration would mismatch.
 - Stack chip colors in `Home.svelte` (`stackColors`) must match the shields.io badge colors in the profile generator.

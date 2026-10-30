@@ -8,6 +8,9 @@ on:
 jobs:
     test-build-deploy:
         runs-on: ubuntu-latest
+        env:
+            # Fine-grained PAT with Actions: write on FS-Frost/fs-frost. Profile sync is skipped if unset.
+            PROFILE_DISPATCH_TOKEN: ${{ secrets.PROFILE_DISPATCH_TOKEN }}
         steps:
             - name: Checkout 🛎️
               uses: actions/checkout@v5
@@ -48,3 +51,23 @@ jobs:
               with:
                   branch: gh-pages
                   folder: build
+
+            # The profile README reads the published tools.json, so wait until Pages serves this build's copy.
+            - name: Wait for tools.json on GitHub Pages
+              if: env.PROFILE_DISPATCH_TOKEN != ''
+              run: |
+                  for i in $(seq 1 20); do
+                      if curl -sf https://fs-frost.github.io/mai-tools/tools.json | cmp -s - build/tools.json; then
+                          echo "tools.json is published"
+                          exit 0
+                      fi
+                      sleep 15
+                  done
+                  echo "tools.json was not published after 5 minutes" >&2
+                  exit 1
+
+            - name: Update GitHub profile README
+              if: env.PROFILE_DISPATCH_TOKEN != ''
+              env:
+                  GH_TOKEN: ${{ secrets.PROFILE_DISPATCH_TOKEN }}
+              run: gh workflow run readme.yml -R FS-Frost/fs-frost

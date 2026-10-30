@@ -31,14 +31,17 @@ Every tool is one entry in [`static/tools.json`](static/tools.json), validated w
     "category": "Images",
     "href": "https://fs-frost.github.io/qr-detector",
     "external": true,
-    "stack": ["Svelte"]
+    "stack": ["Svelte"],
+    "repo": "qr-detector",
+    "topics": ["qr-code", "camera", "svelte"]
 }
 ```
 
 - `name` and `description` are either `{ "en", "es" }` or a plain string when it reads the same in both languages (proper names like `"Gocker"`).
 - `category` and `stack` must be values from the `Category` and `Stack` enums in `tools.ts`. A new stack also needs a color in `stackColors` ([`Home.svelte`](src/lib/gui/pages/Home.svelte)).
 - Internal tools use `href: "?page=<id>"`, `external: false`, and need a route in [`src/routes/Router.svelte`](src/routes/Router.svelte).
-- `tools.json` is the **single source of truth** for my [GitHub profile](https://github.com/FS-Frost) too: it is published at `https://fs-frost.github.io/mai-tools/tools.json` and the profile regenerates its project tables from it every day.
+- `repo` (GitHub repo name) and `topics` are optional; internal tools have no repo.
+- `tools.json` is the **single source of truth** for my [GitHub profile](https://github.com/FS-Frost) too: it is published at `https://fs-frost.github.io/mai-tools/tools.json`, and every deploy triggers the profile to regenerate its project tables (with a daily run as backup). Repo descriptions, homepages and topics are synced from it as well.
 
 ## Languages
 

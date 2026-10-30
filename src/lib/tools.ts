@@ -41,6 +41,10 @@ export const Tool = z.object({
     href: z.string(),
     external: z.boolean(),
     stack: z.array(Stack),
+    /** GitHub repo name under FS-Frost; omitted for tools that live inside mai-tools. */
+    repo: z.string().optional(),
+    /** GitHub topics, synced to the repo by the profile's scripts/sync-repos.ts. */
+    topics: z.array(z.string().regex(/^[a-z0-9][a-z0-9-]{0,49}$/)).optional(),
 });
 
 export type Tool = z.infer<typeof Tool>;
