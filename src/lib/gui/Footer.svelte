@@ -6,6 +6,7 @@
     } from "$lib/buildInfo";
     import { appState } from "$lib/state.svelte.ts";
     import { tools } from "$lib/tools";
+    import { t } from "$lib/text";
 
     const build = $derived(appState.buildInfo);
 </script>
@@ -15,7 +16,7 @@
         class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-3 px-4 py-6 text-sm text-slate-500 dark:text-slate-400 sm:flex-row sm:px-6"
     >
         <p>
-            {tools.length} tools crafted by
+            {t().toolsCraftedBy(tools.length)}
             <a
                 href="https://github.com/FS-Frost"
                 target="_blank"
@@ -31,7 +32,7 @@
                 href={generateCommitLink(build.actor, build.repo, build.sha)}
                 target="_blank"
                 rel="noopener noreferrer"
-                title="View this build's commit"
+                title={t().viewCommit}
                 class="inline-flex items-center gap-1.5 font-mono text-xs text-slate-400 transition-colors hover:text-brand-600 dark:hover:text-brand-400"
             >
                 <GitCommitHorizontal class="h-4 w-4" />

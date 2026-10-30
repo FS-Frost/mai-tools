@@ -15,7 +15,9 @@
     } from "@lucide/svelte";
     import { appState } from "$lib/state.svelte.ts";
     import { Page } from "$lib/page";
-    import { categories, tools, type Category, type Tool } from "$lib/tools";
+    import { categories, tools, type Category, type Stack, type Tool } from "$lib/tools";
+    import { localize } from "$lib/locale.svelte.ts";
+    import { t } from "$lib/text";
 
     const categoryIcons: Record<Category, LucideIcon> = {
         AI: Sparkles,
@@ -26,7 +28,20 @@
         "Plain text": Type,
         SQL: Database,
         Translation: Languages,
-        "Video games": Gamepad2,
+        Fun: Gamepad2,
+    };
+
+    /** Same colors as the shields.io badges on the GitHub profile README. */
+    const stackColors: Record<Stack, { bg: string; fg: string }> = {
+        Svelte: { bg: "#FF3E00", fg: "#FFFFFF" },
+        React: { bg: "#20232A", fg: "#61DAFB" },
+        TypeScript: { bg: "#3178C6", fg: "#FFFFFF" },
+        JavaScript: { bg: "#F7DF1E", fg: "#000000" },
+        Go: { bg: "#00ADD8", fg: "#FFFFFF" },
+        Docker: { bg: "#2496ED", fg: "#FFFFFF" },
+        Bun: { bg: "#000000", fg: "#FFFFFF" },
+        Gemini: { bg: "#8E75B2", fg: "#FFFFFF" },
+        Claude: { bg: "#D97757", fg: "#FFFFFF" },
     };
 
     let activeCategory = $state<Category | "All">("All");
@@ -38,9 +53,9 @@
             const matchesCategory = activeCategory === "All" || tool.category === activeCategory;
             const matchesQuery =
                 q === "" ||
-                tool.name.toLowerCase().includes(q) ||
-                tool.description.toLowerCase().includes(q) ||
-                tool.category.toLowerCase().includes(q);
+                localize(tool.name).toLowerCase().includes(q) ||
+                localize(tool.description).toLowerCase().includes(q) ||
+                t().categories[tool.category].toLowerCase().includes(q);
             return matchesCategory && matchesQuery;
         });
     });
@@ -66,7 +81,7 @@
             MAI TOOLS
         </h1>
         <p class="mt-4 text-base text-slate-600 dark:text-slate-400 sm:text-lg">
-            A curated collection of minimalist web utilities by
+            {t().tagline}
             <a
                 href="https://github.com/FS-Frost"
                 target="_blank"
@@ -87,7 +102,7 @@
             <input
                 type="search"
                 bind:value={query}
-                placeholder="Search tools..."
+                placeholder={t().searchPlaceholder}
                 class="w-full rounded-lg border border-slate-300 bg-white py-2.5 pl-10 pr-4 text-sm text-slate-800 placeholder:text-slate-400 focus:border-brand-600 focus:ring-1 focus:ring-brand-600 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200 dark:focus:border-brand-500 dark:focus:ring-brand-500"
             />
         </div>
@@ -103,7 +118,7 @@
                         : "bg-slate-100 text-slate-600 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700",
                 ]}
             >
-                All
+                {t().all}
             </button>
             {#each categories as category}
                 <button
@@ -116,7 +131,7 @@
                             : "bg-slate-100 text-slate-600 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700",
                     ]}
                 >
-                    {category}
+                    {t().categories[category]}
                 </button>
             {/each}
         </div>
@@ -125,7 +140,7 @@
     <!-- Gallery -->
     {#if filtered.length === 0}
         <p class="mt-16 text-center text-sm text-slate-500 dark:text-slate-400">
-            No tools match your search.
+            {t().noResults}
         </p>
     {:else}
         <div class="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -153,18 +168,31 @@
 
                     <div>
                         <h3 class="font-bold text-slate-900 dark:text-white">
-                            {tool.name}
+                            {localize(tool.name)}
                         </h3>
                         <p class="mt-1 text-sm leading-relaxed text-slate-500 dark:text-slate-400">
-                            {tool.description}
+                            {localize(tool.description)}
                         </p>
                     </div>
 
-                    <span
-                        class="mt-auto text-xs font-semibold uppercase tracking-wider text-slate-400 dark:text-slate-500"
-                    >
-                        {tool.category}
-                    </span>
+                    <div class="mt-auto flex flex-wrap items-center justify-between gap-2">
+                        <span
+                            class="text-xs font-semibold uppercase tracking-wider text-slate-400 dark:text-slate-500"
+                        >
+                            {t().categories[tool.category]}
+                        </span>
+                        <div class="flex flex-wrap gap-1">
+                            {#each tool.stack as stack}
+                                <span
+                                    class="rounded px-1.5 py-0.5 text-[10px] font-semibold"
+                                    style:background-color={stackColors[stack].bg}
+                                    style:color={stackColors[stack].fg}
+                                >
+                                    {stack}
+                                </span>
+                            {/each}
+                        </div>
+                    </div>
                 </a>
             {/each}
         </div>

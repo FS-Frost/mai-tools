@@ -3,7 +3,8 @@
     import { generateBranchLink } from "$lib/buildInfo";
     import { appState } from "$lib/state.svelte.ts";
     import { themeState, toggleTheme } from "$lib/theme.svelte.ts";
-    import text from "$lib/text";
+    import { Locale, localeState, toggleLocale } from "$lib/locale.svelte.ts";
+    import { t } from "$lib/text";
 
     const githubLink = $derived(
         appState.buildInfo.sha != ""
@@ -31,9 +32,30 @@
         <div class="flex items-center gap-1">
             <button
                 type="button"
+                onclick={toggleLocale}
+                aria-label={t().switchLanguage}
+                title={t().switchLanguage}
+                class="flex h-9 items-center gap-1 rounded-lg px-2.5 text-xs font-semibold tracking-wider transition-colors hover:bg-slate-100 dark:hover:bg-slate-800"
+            >
+                {#each Locale.options as locale, i}
+                    {#if i > 0}
+                        <span class="text-slate-300 dark:text-slate-600">|</span>
+                    {/if}
+                    <span
+                        class={localeState.current === locale
+                            ? "text-slate-900 dark:text-white"
+                            : "text-slate-400 dark:text-slate-500"}
+                    >
+                        {locale.toUpperCase()}
+                    </span>
+                {/each}
+            </button>
+
+            <button
+                type="button"
                 onclick={toggleTheme}
-                aria-label="Toggle theme"
-                title="Toggle theme"
+                aria-label={t().toggleTheme}
+                title={t().toggleTheme}
                 class="flex h-9 w-9 items-center justify-center rounded-lg text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white"
             >
                 {#if themeState.current === "dark"}
@@ -47,7 +69,7 @@
                 href={githubLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                title={text.checkOnGitHub}
+                title={t().checkOnGitHub}
                 class="flex h-9 items-center gap-2 rounded-lg px-3 text-sm font-medium text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white"
             >
                 <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">

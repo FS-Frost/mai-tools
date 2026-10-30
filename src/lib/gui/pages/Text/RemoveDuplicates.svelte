@@ -1,7 +1,7 @@
 <script lang="ts">
     import ButtonCopyResult from "$lib/gui/ButtonCopyResult.svelte";
     import ToolLayout from "$lib/gui/ToolLayout.svelte";
-    import text from "$lib/text";
+    import { t } from "$lib/text";
 
     let input = $state<string>("1, 2, 3, 2");
 
@@ -28,17 +28,17 @@
     const labelClass = "mb-1.5 block text-sm font-medium text-slate-700 dark:text-slate-300";
 </script>
 
-<ToolLayout title={text.removeDuplicates} description="Strip duplicate entries from a comma-separated list.">
+<ToolLayout toolId="text.removeDuplicates">
     <div>
-        <label class={labelClass} for="input">List</label>
+        <label class={labelClass} for="input">{t().list}</label>
         <textarea id="input" bind:value={input} rows="6" class={fieldClass} placeholder="1, 2, 3"></textarea>
     </div>
 
     <div>
         <div class="mb-1.5 flex items-center justify-between">
-            <label class={labelClass + " mb-0"} for="output">Output</label>
+            <label class={labelClass + " mb-0"} for="output">{t().output}</label>
             <ButtonCopyResult rawResultLines={output} />
         </div>
-        <textarea id="output" value={output} readonly rows="6" class={fieldClass} placeholder="Output"></textarea>
+        <textarea id="output" value={output} readonly rows="6" class={fieldClass} placeholder={t().output}></textarea>
     </div>
 </ToolLayout>

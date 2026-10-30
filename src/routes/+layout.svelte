@@ -5,8 +5,10 @@
     import "./styles.css";
     import { appState } from "$lib/state.svelte";
     import { getBuildInfo } from "$lib/buildInfo";
+    import { loadLocale } from "$lib/locale.svelte";
 
     onMount(async () => {
+        loadLocale();
         appState.buildInfo = await getBuildInfo();
     });
 </script>
