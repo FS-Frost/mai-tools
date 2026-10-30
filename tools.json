@@ -237,15 +237,15 @@
         "id": "asu-cli",
         "name": "Asu CLI",
         "description": {
-            "en": "Spanish CLI for ASS subtitle translation tasks: AviSynth scripts, font checks, merging and rescaling.",
-            "es": "CLI en español para traducir subtítulos ASS: scripts AviSynth, verificación de fuentes, unión y reescalado."
+            "en": "Spanish CLI for fansub work: AviSynth scripts, font checks, ASS merging and rescaling, final episode encodes and x264 A/B comparisons.",
+            "es": "CLI en español para el trabajo de fansub: scripts AviSynth, verificación de fuentes, unión y reescalado de ASS, encode final del episodio y comparación A/B de x264."
         },
         "category": "Translation",
         "href": "https://github.com/FS-Frost/asu-cli",
         "external": true,
         "stack": ["TypeScript", "Bun"],
         "repo": "asu-cli",
-        "topics": ["subtitles", "ass", "avisynth", "fansub", "bun", "cli"]
+        "topics": ["subtitles", "ass", "avisynth", "fansub", "x264", "video-encoding", "bun", "cli"]
     },
     {
         "id": "syncrajo-editor-plantillas",
