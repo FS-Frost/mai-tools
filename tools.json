@@ -3,13 +3,15 @@
         "id": "mai-chat",
         "name": { "en": "Browser Local AI Chat", "es": "Chat IA local en el navegador" },
         "description": {
-            "en": "Chat with AI models running fully in your browser, no server required.",
-            "es": "Chatea con modelos de IA que corren completamente en tu navegador, sin servidor."
+            "en": "Chat with AI models running fully in your browser with WebGPU, no server required.",
+            "es": "Chatea con modelos de IA que corren completamente en tu navegador con WebGPU, sin servidor."
         },
         "category": "AI",
         "href": "https://fs-frost.github.io/mai-chat",
         "external": true,
-        "stack": ["Svelte"]
+        "stack": ["Svelte"],
+        "repo": "mai-chat",
+        "topics": ["ai", "llm", "webgpu", "svelte"]
     },
     {
         "id": "skills",
@@ -21,7 +23,9 @@
         "category": "AI",
         "href": "https://github.com/FS-Frost/skills",
         "external": true,
-        "stack": ["Claude", "JavaScript"]
+        "stack": ["Claude", "JavaScript"],
+        "repo": "skills",
+        "topics": ["claude-code", "agent-skills", "claude-code-plugin", "ai-agents"]
     },
     {
         "id": "sensei",
@@ -33,7 +37,9 @@
         "category": "Learning",
         "href": "https://fs-frost.github.io/sensei",
         "external": true,
-        "stack": ["Svelte", "Gemini"]
+        "stack": ["Svelte", "Gemini"],
+        "repo": "sensei",
+        "topics": ["japanese", "language-learning", "srs", "gemini", "svelte"]
     },
     {
         "id": "yomigaeru",
@@ -45,19 +51,23 @@
         "category": "Learning",
         "href": "https://fs-frost.github.io/yomigaeru",
         "external": true,
-        "stack": ["Svelte", "Gemini"]
+        "stack": ["Svelte", "Gemini"],
+        "repo": "yomigaeru",
+        "topics": ["japanese", "language-learning", "srs", "gemini", "pwa", "offline-first", "svelte"]
     },
     {
         "id": "asu-regex-js",
         "name": "Asu Regex",
         "description": {
-            "en": "TypeScript parser to work with SubStation Alpha (.ass) subtitles.",
-            "es": "Parser en TypeScript para trabajar con subtítulos SubStation Alpha (.ass)."
+            "en": "TypeScript parser to work with SubStation Alpha (.ass) subtitles, published on JSR as @fs-frost/asu.",
+            "es": "Parser en TypeScript para trabajar con subtítulos SubStation Alpha (.ass), publicado en JSR como @fs-frost/asu."
         },
         "category": "Coding",
         "href": "https://github.com/FS-Frost/asu-regex-js",
         "external": true,
-        "stack": ["TypeScript"]
+        "stack": ["TypeScript"],
+        "repo": "asu-regex-js",
+        "topics": ["subtitles", "ass", "parser", "typescript", "jsr"]
     },
     {
         "id": "gocker",
@@ -69,7 +79,9 @@
         "category": "Coding",
         "href": "https://github.com/FS-Frost/gocker",
         "external": true,
-        "stack": ["Go", "Docker"]
+        "stack": ["Go", "Docker"],
+        "repo": "gocker",
+        "topics": ["go", "docker", "cli"]
     },
     {
         "id": "hui",
@@ -81,7 +93,9 @@
         "category": "Coding",
         "href": "https://fs-frost.github.io/hui",
         "external": true,
-        "stack": ["JavaScript"]
+        "stack": ["JavaScript"],
+        "repo": "hui",
+        "topics": ["javascript", "ui-framework", "reactive"]
     },
     {
         "id": "excel2json",
@@ -93,7 +107,9 @@
         "category": "Converters",
         "href": "https://fs-frost.github.io/excel2json",
         "external": true,
-        "stack": ["Svelte"]
+        "stack": ["Svelte"],
+        "repo": "excel2json",
+        "topics": ["excel", "json", "converter", "svelte"]
     },
     {
         "id": "json2openapi",
@@ -105,7 +121,9 @@
         "category": "Converters",
         "href": "https://fs-frost.github.io/json2openapi",
         "external": true,
-        "stack": ["Svelte"]
+        "stack": ["Svelte"],
+        "repo": "json2openapi",
+        "topics": ["json", "openapi", "converter", "svelte"]
     },
     {
         "id": "openapi2go",
@@ -117,7 +135,9 @@
         "category": "Converters",
         "href": "https://github.com/FS-Frost/openapi2go",
         "external": true,
-        "stack": ["Go"]
+        "stack": ["Go"],
+        "repo": "openapi2go",
+        "topics": ["openapi", "go", "code-generator", "cli"]
     },
     {
         "id": "qr-detector",
@@ -129,7 +149,9 @@
         "category": "Images",
         "href": "https://fs-frost.github.io/qr-detector",
         "external": true,
-        "stack": ["Svelte"]
+        "stack": ["Svelte"],
+        "repo": "qr-detector",
+        "topics": ["qr-code", "camera", "svelte"]
     },
     {
         "id": "wallpaper-remixer",
@@ -141,7 +163,9 @@
         "category": "Images",
         "href": "https://github.com/FS-Frost/wallpaper-remixer",
         "external": true,
-        "stack": ["Go"]
+        "stack": ["Go"],
+        "repo": "wallpaper-remixer",
+        "topics": ["go", "wallpaper", "cli", "windows"]
     },
     {
         "id": "img2rgba",
@@ -153,7 +177,9 @@
         "category": "Images",
         "href": "https://github.com/FS-Frost/img2rgba",
         "external": true,
-        "stack": ["TypeScript"]
+        "stack": ["TypeScript"],
+        "repo": "img2rgba",
+        "topics": ["image", "rgba", "converter", "typescript"]
     },
     {
         "id": "text.removeBreakLines",
@@ -183,25 +209,29 @@
         "id": "sql-playground",
         "name": "SQL Playground",
         "description": {
-            "en": "Run SQL queries against an in-browser database sandbox.",
-            "es": "Ejecuta consultas SQL sobre una base de datos de prueba en el navegador."
+            "en": "Run SQL queries on SQLite compiled to WASM, right in the browser. Installable as a PWA.",
+            "es": "Ejecuta consultas SQL sobre SQLite compilado a WASM, directo en el navegador. Instalable como PWA."
         },
         "category": "SQL",
         "href": "https://fs-frost.github.io/sql-playground",
         "external": true,
-        "stack": ["Svelte"]
+        "stack": ["Svelte"],
+        "repo": "sql-playground",
+        "topics": ["sql", "sqlite", "wasm", "pwa", "svelte"]
     },
     {
         "id": "asu-web",
         "name": "Asu Web",
         "description": {
-            "en": "Tools for subtitle automation and batch processing.",
-            "es": "Herramientas para automatizar y procesar subtítulos en lote."
+            "en": "Tools to automate SubStation Alpha (SSA/ASS) subtitle processing, in batch and in the browser.",
+            "es": "Herramientas para automatizar el procesamiento de subtítulos SubStation Alpha (SSA/ASS), en lote y en el navegador."
         },
         "category": "Translation",
         "href": "https://fs-frost.github.io/asu-web",
         "external": true,
-        "stack": ["Svelte"]
+        "stack": ["Svelte"],
+        "repo": "asu-web",
+        "topics": ["subtitles", "ass", "fansub", "svelte"]
     },
     {
         "id": "asu-cli",
@@ -213,19 +243,23 @@
         "category": "Translation",
         "href": "https://github.com/FS-Frost/asu-cli",
         "external": true,
-        "stack": ["TypeScript", "Bun"]
+        "stack": ["TypeScript", "Bun"],
+        "repo": "asu-cli",
+        "topics": ["subtitles", "ass", "avisynth", "fansub", "bun", "cli"]
     },
     {
         "id": "syncrajo-editor-plantillas",
         "name": { "en": "SyncRajo Template Editor", "es": "Editor de plantillas SyncRajo" },
         "description": {
-            "en": "Web editor to create and publish SyncRajo Fansub project templates.",
-            "es": "Editor web para crear y publicar las plantillas de proyectos de SyncRajo Fansub."
+            "en": "Web editor to create, edit and publish SyncRajo Fansub's HTML project templates on Blogger.",
+            "es": "Editor web para crear, editar y publicar las plantillas HTML de proyectos de SyncRajo Fansub en Blogger."
         },
         "category": "Translation",
         "href": "https://fs-frost.github.io/syncrajo-editor-plantillas",
         "external": true,
-        "stack": ["Svelte"]
+        "stack": ["Svelte"],
+        "repo": "syncrajo-editor-plantillas",
+        "topics": ["fansub", "blogger", "html-editor", "svelte"]
     },
     {
         "id": "dictionary",
@@ -237,7 +271,9 @@
         "category": "Translation",
         "href": "https://fs-frost.github.io/dictionary",
         "external": true,
-        "stack": ["Svelte"]
+        "stack": ["Svelte"],
+        "repo": "dictionary",
+        "topics": ["dictionary", "english", "svelte"]
     },
     {
         "id": "facts",
@@ -249,18 +285,22 @@
         "category": "Fun",
         "href": "https://fs-frost.github.io/facts",
         "external": true,
-        "stack": ["React"]
+        "stack": ["React"],
+        "repo": "facts",
+        "topics": ["fun-facts", "pwa", "react"]
     },
     {
         "id": "snake",
         "name": "Snake",
         "description": {
-            "en": "The classic Snake game, playable in your browser.",
-            "es": "El clásico juego de la serpiente, jugable en tu navegador."
+            "en": "The classic Snake game, built with p5.js and TypeScript and playable in your browser.",
+            "es": "El clásico juego de la serpiente, hecho con p5.js y TypeScript y jugable en tu navegador."
         },
         "category": "Fun",
         "href": "https://fs-frost.github.io/snake",
         "external": true,
-        "stack": ["TypeScript"]
+        "stack": ["TypeScript"],
+        "repo": "snake",
+        "topics": ["game", "snake", "p5js", "typescript"]
     }
 ]
