@@ -28,5 +28,5 @@ Push to `main` deploys via `.github/workflows/main.yml` (rewrites `<base href>` 
 - Every user-visible string goes through `t()` or `localize()`; never hardcode English in components. Add keys to both `en` and `es` (the `Text` type enforces it).
 - Locale always starts as `"en"` and the saved choice is applied in `onMount` (`+layout.svelte`). Do not read `localStorage` during init: the HTML is prerendered and hydration would mismatch.
 - Stack chip colors in `Home.svelte` (`stackColors`) must match the shields.io badge colors in the profile generator.
-- The profile generator also copies the Spanish category labels from `text.ts`. Adding or renaming a category means updating its `readmes[].categories` map too.
+- Adding or renaming a category touches four places: the `Category` enum (`tools.ts`), `categories` in both `en` and `es` (`text.ts`), an icon in `categoryIcons` (`Home.svelte`, `bun check` fails without it), and the `readmes[].categories` map in the profile generator (it copies the Spanish labels from `text.ts`). Push `fs-frost` before `mai-tools` so the profile already knows the label when the deploy triggers it.
 - Internal tools: `href: "?page=<id>"`, `external: false`, add the id to `$lib/page.ts` and a branch in `Router.svelte`, and wrap the page in `<ToolLayout toolId="...">`.
