@@ -101,29 +101,29 @@
         "id": "excel2json",
         "name": "Excel ↔ JSON",
         "description": {
-            "en": "Convert spreadsheets to JSON and back, right in the browser.",
-            "es": "Convierte hojas de cálculo a JSON y viceversa, directo en el navegador."
+            "en": "Convert and edit Excel, CSV and JSON in the browser: multiple sheets, editable grid, offline PWA.",
+            "es": "Convierte y edita Excel, CSV y JSON en el navegador: varias hojas, grilla editable, PWA sin conexión."
         },
         "category": "Converters",
         "href": "https://fs-frost.github.io/excel2json",
         "external": true,
         "stack": ["Svelte"],
         "repo": "excel2json",
-        "topics": ["excel", "json", "converter", "svelte"]
+        "topics": ["excel", "json", "csv", "converter", "pwa", "svelte"]
     },
     {
         "id": "json2openapi",
         "name": "JSON → OpenAPI",
         "description": {
-            "en": "Generate OpenAPI schemas from raw JSON payloads instantly.",
-            "es": "Genera esquemas OpenAPI a partir de payloads JSON al instante."
+            "en": "Turn JSON samples into OpenAPI 3.1 schemas, TypeScript interfaces or Zod, right in the browser.",
+            "es": "Convierte muestras JSON en esquemas OpenAPI 3.1, interfaces TypeScript o Zod, directo en el navegador."
         },
         "category": "Converters",
         "href": "https://fs-frost.github.io/json2openapi",
         "external": true,
         "stack": ["Svelte"],
         "repo": "json2openapi",
-        "topics": ["json", "openapi", "converter", "svelte"]
+        "topics": ["json", "openapi", "typescript", "zod", "converter", "pwa", "svelte"]
     },
     {
         "id": "openapi2go",
@@ -143,15 +143,15 @@
         "id": "qr-detector",
         "name": { "en": "QR Detector", "es": "Detector de QR" },
         "description": {
-            "en": "Detect and decode QR codes from images or your camera.",
-            "es": "Detecta y decodifica códigos QR desde imágenes o tu cámara."
+            "en": "Scan QR codes and barcodes from your camera or images. Works offline; nothing leaves your device.",
+            "es": "Escanea códigos QR y de barras desde la cámara o imágenes. Funciona sin conexión; nada sale de tu equipo."
         },
         "category": "Images",
         "href": "https://fs-frost.github.io/qr-detector",
         "external": true,
         "stack": ["Svelte"],
         "repo": "qr-detector",
-        "topics": ["qr-code", "camera", "svelte"]
+        "topics": ["qr-code", "barcode", "camera", "pwa", "offline-first", "svelte"]
     },
     {
         "id": "wallpaper-remixer",
@@ -204,6 +204,20 @@
         "href": "?page=text.removeDuplicates",
         "external": false,
         "stack": ["Svelte"]
+    },
+    {
+        "id": "mai-docs",
+        "name": "Mai Docs",
+        "description": {
+            "en": "Documents, spreadsheets and presentations that work offline, right in your browser (PWA). Opens and saves docx, xlsx and pptx.",
+            "es": "Documentos, hojas de cálculo y presentaciones que funcionan sin conexión, directo en el navegador (PWA). Abre y guarda docx, xlsx y pptx."
+        },
+        "category": "Productivity",
+        "href": "https://fs-frost.github.io/mai-docs",
+        "external": true,
+        "stack": ["Svelte"],
+        "repo": "mai-docs",
+        "topics": ["office", "documents", "spreadsheet", "presentations", "pwa", "offline-first", "svelte"]
     },
     {
         "id": "sql-playground",
