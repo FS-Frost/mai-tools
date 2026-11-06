@@ -11,6 +11,7 @@ export const Category = z.enum([
     "Images",
     "Learning",
     "Plain text",
+    "Productivity",
     "SQL",
     "Translation",
     "Fun",

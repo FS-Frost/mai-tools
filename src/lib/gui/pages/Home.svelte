@@ -2,6 +2,7 @@
     import {
         ArrowLeftRight,
         ArrowUpRight,
+        Briefcase,
         Code,
         Database,
         Gamepad2,
@@ -26,6 +27,7 @@
         Images: Image,
         Learning: GraduationCap,
         "Plain text": Type,
+        Productivity: Briefcase,
         SQL: Database,
         Translation: Languages,
         Fun: Gamepad2,
